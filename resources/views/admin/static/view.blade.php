@@ -42,6 +42,6 @@ s<div class="field">
     <div class="control">
         {{-- <label class="label"></label> --}}
         <br>
-        <a class="button is-link" href="{{asset($details->cv)}}">Download CV</a>
+        <a class="button is-link" href="{{route('admin.download',$details->cv)}}">Download CV</a>
     </div>
 </div>

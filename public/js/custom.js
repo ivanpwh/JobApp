@@ -87,8 +87,40 @@ $(document).ready(function () {
   });
 
   $(document).on('click','#delete-button', function() {
-    $('#view-modal').addClass('is-active');
+    // $('#view-modal').addClass('is-active');
     $('#user-id').val($(this).data('id'));
+    var id = $(this).data('id');
+    var status_cv = $(this).data('status_cv');
+
+    $.ajaxSetup({
+      headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+
+    $.ajax({
+      type: "delete",
+      url: "/admin/delete/"+id,
+      data: {
+        'id' : id,
+        'status_cv' : status_cv
+      },
+      dataType: "JSON",
+      success: function (data) {
+        $("#table").html(data['view']);
+      },
+      error: function(xhr) {
+        console.log(xhr.responseText); // this line will save you tons of hours while debugging
+       // do something here because of error
+      }
+
+    });
+
+    
+    // $.delete('/admin/delete/'+id, function(data) {
+    //   $("#table").html(data['view']);
+    // });
+    
   });
 
   $(document).on('click','#button-unread', function() {
@@ -194,7 +226,7 @@ $(document).ready(function () {
     var id = $(this).data('id');
     $.ajax({
       type: "get",
-      url: "admin/statusCV/"+id,
+      url: "admin/statusAccept/"+id,
       data: {
         'status_cv' : '1'
       },
@@ -204,6 +236,7 @@ $(document).ready(function () {
       }
     });
   });
+  
   
 });
 

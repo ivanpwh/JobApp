@@ -51,7 +51,7 @@
                 <td>
                     <a class="button is-primary is-rounded is-outlined" id="view-button" data-id="{{$user->id}}">View</a>
                     <a class="button is-success is-rounded is-outlined" id="update-button" data-id="{{$user->id}}">Edit</a>
-                    <a class="button is-danger is-rounded is-outlined" id="delete-button"  data-id="{{$user->id}}">Delete</a>
+                    <a class="button is-danger is-rounded is-outlined" id="delete-button"  data-id="{{$user->id}}" data-status_cv="{{$user->status_cv}}">Delete</a>
                 </td>
             </tr>
             @endforeach

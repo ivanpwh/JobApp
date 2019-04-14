@@ -107,6 +107,7 @@ class AdminController extends Controller
         } else {
             $users = User::find($id);
             $users->status_cv = "2";
+            $user->status = "0";
             $users->save();
             return redirect()->route('admin.users');
         }
@@ -257,12 +258,26 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        $post = Post::findOrFail($id);
-        $post->delete();
+        // $post = Post::findOrFail($id);
+        // $post->delete();
+        // return response()->json($post);
+        
+        $users = User::find($id);
+        $details = User::with('detail')->find($id)->detail;
 
-        return response()->json($post);
+        $users->delete();
+        $details->delete();
 
+        $users = User::where('status_cv','=',$request->status_cv)->get();
+        $view = (String) view('admin.static.list')->with('users',$users)->with('details', $details)->render();
+        return response()->json(['view'=> $view, 'status' => 'success']);
+    }
+
+    public function download($file)
+    {
+    	// $pdf = PDF::loadView('pdfView');
+		return respose()->download($file);
     }
 }

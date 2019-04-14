@@ -35,6 +35,8 @@ Route::group(['middleware' => ['auth','role:admin']], function () {
     Route::get('admin/statusAccept/{user}','AdminController@statusAccept')->name('admin.statusAccept');
     Route::get('admin/statusReject/{user}','AdminController@statusReject')->name('admin.statusReject');
     Route::get('admin/statusUnread/{user}','AdminController@statusUnread')->name('admin.statusUnread');
+    Route::delete('admin/delete/{user}','AdminController@destroy')->name('admin.delete');
+    Route::get('admin/download/{file}','AdminController@download')->name('admin.download');
 });
 
 Route::group(['middleware' => ['auth','role:user']], function () {

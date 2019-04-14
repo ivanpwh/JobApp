@@ -10,6 +10,7 @@
     <link href={{asset("css/style.css")}} rel="stylesheet">
     <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
     <script language="JavaScript" type="text/javascript" src="{{asset('js/custom.js')}}"></script>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
     @include('admin.layouts.navbar')
