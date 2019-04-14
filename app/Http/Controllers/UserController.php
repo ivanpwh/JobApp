@@ -204,4 +204,22 @@ class UserController extends Controller
     {
         //
     }
+
+    public function uploadCV(Request $request,$id){
+
+        $details = User::with('detail')->find($id)->detail;
+
+        $file2 = $request->file('cv');
+        $destination_path2 = 'uploads/';
+        $filename2 = str_random(6).'_'.$file2->getClientOriginalName();
+        $file2->move($destination_path2, $filename2);
+        $details->cv = $destination_path2 . $filename2;
+        $details->save();
+
+        $user = User::find($id);
+        $user->status_cv = 0;
+        $user->save();
+        
+        return redirect('home');
+    }
 }

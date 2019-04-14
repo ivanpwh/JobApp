@@ -107,7 +107,7 @@ class AdminController extends Controller
         } else {
             $users = User::find($id);
             $users->status_cv = "2";
-            $user->status = "0";
+            // $users->status = "0";
             $users->save();
             return redirect()->route('admin.users');
         }

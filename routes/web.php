@@ -47,4 +47,5 @@ Route::group(['middleware' => ['auth','role:user']], function () {
     Route::post('user','UserController@store')->name('user.store');
     Route::get('user/{user}/edit','UserController@edit')->name('user.edit');
     Route::put('user/{user}','UserController@update')->name('user.update');
+    Route::put('user/uploadCV/{user}','UserController@uploadCV')->name('user.uploadCV');
 });

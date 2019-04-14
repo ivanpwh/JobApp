@@ -81,6 +81,38 @@
                                     <td><a class="button is-danger">Reject</a></td>
                                 @endif
                             </tr>
+                            @if ($currentUser->status_cv == 2)
+                                <tr>
+                                    <th>Reupload CV</th>
+                                    <td>
+                                        <form method="POST" action="{{ route('user.uploadCV',$currentUser->id) }}" enctype="multipart/form-data">
+                                        {{ csrf_field() }}
+                                        {{method_field('put')}}
+                                        <div class="field">
+                                            <div class="file has-name">
+                                                <label class="file-label">
+                                                    <input class="file-input" type="file" name="cv">
+                                                    <span class="file-cta">
+                                                    <span class="file-icon">
+                                                        <i class="fas fa-upload"></i>
+                                                    </span>
+                                                    <span class="file-label">
+                                                        Choose a file…
+                                                    </span>
+                                                    </span>
+                                                </label>
+                                            </div>
+                                            @if ($errors->has('cv'))
+                                                <p class="help is-danger">
+                                                    {{ $errors->first('cv') }}
+                                                </p>
+                                            @endif
+                                        </div>
+                                        <button class="button is-primary" type="submit">Upload</button>
+                                        </form>
+                                    </td>
+                                </tr>    
+                            @endif
                         </table>
                     </div>
                 </div>
