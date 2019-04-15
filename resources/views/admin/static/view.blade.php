@@ -1,4 +1,4 @@
-s<div class="field">
+<div class="field">
     <div class="control">
         <label class="label">Name</label>
         <input class="input" type="text" placeholder="Primary input" value="{{$users->name}}" name="name" id="name">
@@ -42,6 +42,6 @@ s<div class="field">
     <div class="control">
         {{-- <label class="label"></label> --}}
         <br>
-        <a class="button is-link" href="{{route('admin.download',$details->cv)}}">Download CV</a>
+        <a class="button is-link" href="{{route('admin.download',$users->id)}}">Download CV</a>
     </div>
 </div>

@@ -275,9 +275,10 @@ class AdminController extends Controller
         return response()->json(['view'=> $view, 'status' => 'success']);
     }
 
-    public function download($file)
+    public function download($id)
     {
-    	// $pdf = PDF::loadView('pdfView');
-		return respose()->download($file);
+        // $pdf = PDF::loadView('pdfView');
+        $details = User::with('detail')->find($id)->detail;
+		return Response::download($details->cv);
     }
 }
